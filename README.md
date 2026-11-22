@@ -14,18 +14,18 @@ O foco é o **domínio de pagamento**: carrinho, checkout e as 5 formas de pagam
 
 ## Roteiro
 
-| Etapa | Descrição | Status |
-|---|---|---|
-| E0 | Exploração da aplicação | ⏳ |
-| E1 | Repositório e fluxo de trabalho | ⏳ |
-| E2 | Arquitetura | ⏳ |
-| E3 | Instalação do Playwright e primeiro teste | ⏳ |
-| E4 | CI/CD com GitHub Actions + relatório Allure | ⏳ |
-| E5 | Cenários de teste com IA | ⏳ |
-| E6 | Plano de testes | ⏳ |
-| E7 | Automação: login, catálogo, carrinho e checkout | ⏳ |
-| E8 | Execução: versão normal x versão com bugs | ⏳ |
-| E9 | Métricas e resultados | ⏳ |
+| Etapa | Descrição                                       | Status |
+| ----- | ----------------------------------------------- | ------ |
+| E0    | Exploração da aplicação                         | ⏳     |
+| E1    | Repositório e fluxo de trabalho                 | ⏳     |
+| E2    | Arquitetura                                     | ⏳     |
+| E3    | Instalação do Playwright e primeiro teste       | ⏳     |
+| E4    | CI/CD com GitHub Actions + relatório Allure     | ⏳     |
+| E5    | Cenários de teste com IA                        | ⏳     |
+| E6    | Plano de testes                                 | ⏳     |
+| E7    | Automação: login, catálogo, carrinho e checkout | ⏳     |
+| E8    | Execução: versão normal x versão com bugs       | ⏳     |
+| E9    | Métricas e resultados                           | ⏳     |
 
 ## Fluxo de trabalho
 
@@ -43,20 +43,20 @@ gitGraph
 
 **Branches:** `tipo/etapa-descricao`
 
-| Tipo | Uso | Exemplo |
-|---|---|---|
-| `feature/` | Estrutura e configuração | `feature/e3-setup-playwright` |
-| `test/` | Novos testes | `test/e7b-checkout-cartao` |
-| `fix/` | Correção de teste | `fix/login-seletor-instavel` |
-| `ci/` | Pipeline e relatórios | `ci/e4-github-actions` |
-| `docs/` | Documentação | `docs/e6-plano-de-testes` |
+| Tipo    | Uso                      | Exemplo                       |
+| ------- | ------------------------ | ----------------------------- |
+| `feat/` | Estrutura e configuração | `feature/e3-setup-playwright` |
+| `test/` | Novos testes             | `test/e7b-checkout-cartao`    |
+| `fix/`  | Correção de teste        | `fix/login-seletor-instavel`  |
+| `ci/`   | Pipeline e relatórios    | `ci/e4-github-actions`        |
+| `docs/` | Documentação             | `docs/e6-plano-de-testes`     |
 
-**Commits:** [Conventional Commits](https://www.conventionalcommits.org/pt-br/), com o tipo em inglês e a descrição em português. Exemplos: `feat: cria page object do checkout`, `test: adiciona cenários de CVV`, `ci: roda smoke tests em todo PR`.
+**Commits:** [Conventional Commits](https://www.conventionalcommits.org/pt-br/), com o tipo e a descrição em inglês. Exemplos: `feat: create page object for checkout`, `test: add scenarios CVV`, `ci: run smoke tests all PR`.
 
-**Pull Requests:** todo PR usa o [modelo do projeto](.github/pull_request_template.md), que inclui a seção **"Uso de IA"**: o que foi gerado por IA e o que foi revisado ou corrigido.
+**Pull Requests:** todo PR usa o [modelo do projeto](.github\pull_request_template.md), que inclui a seção **"Uso de IA"**: o que foi gerado por IA e o que foi revisado ou corrigido.
 
-**Defeitos:** registrados como [issues](../../issues) com o modelo de bug report, separando **severidade** (impacto) de **prioridade** (urgência).
+**Defeitos:** registrados como [issues](.github\issue_template\bug_report.yml) com o modelo de bug report, separando **severidade** (impacto) de **prioridade** (urgência).
 
 ## Autor
 
-Bruno Aurelio, Analista de QA · [LinkedIn](https://www.linkedin.com/in/brunoaurelio)
+Bruno Aurelio, Analista de Automação - QA - Testes · [LinkedIn](https://www.linkedin.com/in/brunoaurelio)

@@ -1,0 +1,175 @@
+name: Bug report
+description: Registrar um defeito encontrado no Toolshop
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use este formulário para registrar um defeito encontrado no Toolshop.
+        **Nunca** informe senhas, tokens, e-mails reais ou dados reais de cartão.
+
+  - type: textarea
+    id: resumo
+    attributes:
+      label: Resumo
+      description: O que está errado, em uma ou duas frases.
+      placeholder: "Ex.: O checkout aceita cartão com CVV de 5 dígitos."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ambiente
+    attributes:
+      label: Ambiente
+      options:
+        - normal (practicesoftwaretesting.com)
+        - with-bugs (with-bugs.practicesoftwaretesting.com)
+        - local (Docker)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: funcionalidade
+    attributes:
+      label: Funcionalidade
+      options:
+        - Login e cadastro
+        - Catálogo, busca e filtros
+        - Carrinho
+        - Checkout
+        - Pagamento
+        - Fatura
+        - API
+        - Outra
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pagamento
+    attributes:
+      label: Forma de pagamento (se aplicável)
+      options:
+        - Não se aplica
+        - Cartão de crédito
+        - Transferência bancária
+        - Compre agora, pague depois
+        - Vale-presente
+        - Pagamento na entrega
+
+  - type: input
+    id: navegador
+    attributes:
+      label: Navegador e versão
+      placeholder: "Ex.: Chromium 131 (Playwright) ou Chrome 131"
+
+  - type: textarea
+    id: precondicoes
+    attributes:
+      label: Pré-condições
+      placeholder: "Ex.: Usuário logado com 1 produto no carrinho."
+
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para reproduzir
+      placeholder: |
+        1. Acessar...
+        2. Clicar em...
+        3. Preencher...
+    validations:
+      required: true
+
+  - type: textarea
+    id: dados
+    attributes:
+      label: Dados de teste usados
+      description: Somente dados fictícios.
+      placeholder: "Ex.: Cartão 1111-2222-3333-4444, validade 12/2030, CVV 12345."
+
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Resultado esperado
+    validations:
+      required: true
+
+  - type: textarea
+    id: obtido
+    attributes:
+      label: Resultado obtido
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severidade
+    attributes:
+      label: Severidade (impacto no sistema)
+      description: |
+        Crítica: impede a compra ou causa erro de valor. Alta: funcionalidade principal falha, sem contorno simples.
+        Média: falha com contorno possível. Baixa: problema visual ou de texto.
+      options:
+        - Crítica
+        - Alta
+        - Média
+        - Baixa
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioridade
+    attributes:
+      label: Prioridade (urgência da correção)
+      description: |
+        Alta: corrigir antes da próxima entrega. Média: corrigir no ciclo atual. Baixa: corrigir quando possível.
+      options:
+        - Alta
+        - Média
+        - Baixa
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequencia
+    attributes:
+      label: Frequência
+      options:
+        - Sempre
+        - Às vezes (intermitente)
+        - Aconteceu uma vez
+    validations:
+      required: true
+
+  - type: dropdown
+    id: origem
+    attributes:
+      label: Como foi encontrado
+      options:
+        - Teste exploratório
+        - Teste automatizado
+        - Caso de teste sugerido por IA
+        - Revisão de requisitos ou código
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidencia
+    attributes:
+      label: Evidência
+      description: Arraste prints, vídeos ou o trace do Playwright para cá.
+
+  - type: input
+    id: teste
+    attributes:
+      label: Teste automatizado relacionado
+      placeholder: "tests/e2e/checkout/cartao.spec.ts"
+
+  - type: checkboxes
+    id: confirmacoes
+    attributes:
+      label: Confirmações
+      options:
+        - label: Procurei e não encontrei uma issue igual já aberta.
+          required: true
+        - label: Não incluí dados reais nem informações sensíveis.
+          required: true
