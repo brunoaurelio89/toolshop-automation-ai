@@ -5,6 +5,7 @@ Instruções para quem preenche este PR (pessoa ou IA, como o Claude):
 - Título do PR no padrão Conventional Commits: tipo: descrição (ex.: test: adiciona cenários de CVV no checkout).
 - Nunca inclua senhas, tokens, e-mails reais ou dados reais de cartão.
 - A seção "Uso de IA" é obrigatória: ela alimenta o arquivo docs/metricas-ia.md.
+- No Checklist, marque só os itens do grupo que corresponde ao tipo de mudança.
 -->
 
 ## Resumo
@@ -77,12 +78,25 @@ npx playwright test caminho/do/teste
 
 ## Checklist
 
+<!--
+Marque só os itens do grupo que corresponde ao tipo de mudança marcado acima.
+Os itens dos outros grupos ficam desmarcados: não se aplicam a este PR.
+-->
+
+**Todos os tipos**
+
 - [ ] Título e commits no padrão Conventional Commits
-- [ ] Branch no padrão `tipo/etapa-descricao`
-- [ ] Testes passando localmente (`npm test` ou `npm run test:smoke`)
+- [ ] Branch no padrão `tipo/etapa-descricao` ou, quando a mudança não for de uma etapa específica, a branch geral do tipo, que já existe (ex.: `docs/general`)
 - [ ] Lint e formatação sem erros (`npm run lint` e `npm run format`)
+- [ ] Sem dados sensíveis (senhas, tokens, e-mails reais, dados reais de cartão)
+- [ ] Linha em `docs/metricas-ia.md` prevista para depois do merge (se usou IA)
+- [ ] README atualizado, se necessário
+
+**Só para `feat`, `test`, `fix`, `refactor` e `ci`**
+
+- [ ] Testes passando localmente (`npm test` ou `npm run test:smoke`)
+
+**Só para `feat`, `test`, `fix` e `refactor`**
+
 - [ ] Segue as regras da arquitetura (teste sem seletor; Page Object sem asserção)
 - [ ] Nenhum `waitForTimeout` no código
-- [ ] Sem dados sensíveis (senhas, tokens, e-mails reais, dados reais de cartão)
-- [ ] `docs/metricas-ia.md` atualizado (se usou IA)
-- [ ] README atualizado, se necessário

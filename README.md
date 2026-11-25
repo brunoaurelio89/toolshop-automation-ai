@@ -41,7 +41,7 @@ gitGraph
   merge feature/e3-setup-playwright id: "squash"
 ```
 
-**Branches:** `tipo/etapa-descricao`
+**Branches:** `tipo/etapa-descricao`. Quando a mudança não for de uma etapa específica, use a branch geral do tipo, que já existe (ex.: `docs/general`), em vez de criar uma nova.
 
 | Tipo    | Uso                      | Exemplo                       |
 | ------- | ------------------------ | ----------------------------- |
