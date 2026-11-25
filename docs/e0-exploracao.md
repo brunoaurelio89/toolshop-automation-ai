@@ -62,21 +62,34 @@ Toolshop
 | RN18 | Pagamento – Bank Transfer     | Nome do banco, nome da conta e número da conta obrigatórios; nome do banco aceita só letras e espaços                              | "Bank name can only contain letters and spaces."                                               | Partição de equivalência        |
 | RN19 | Pagamento – Cash on Delivery  | Sem campos extras; libera o pagamento direto                                                                                       | `finish` habilitado                                                                            | —                               |
 | RN20 | Pagamento – Credit Card       | Número no formato `9999-9999-9999-9999`                                                                                            | "Invalid card number format."                                                                  | Partição de equivalência        |
-| RN21 | Pagamento – Credit Card       | Validade no formato MM/YYYY e no futuro                                                                                            | "Invalid date format. Use MM/YYYY." / "Expiration date must be in the future."                 | Valor-limite (mês atual)        |
+| RN21 | Pagamento – Credit Card       | Validade no formato MM/YYYY; o mês atual é aceito e o mês anterior é rejeitado                                                     | "Invalid date format. Use MM/YYYY." / "Expiration date must be in the future."                 | Valor-limite (mês atual)        |
 | RN22 | Pagamento – Credit Card       | CVV com 3 ou 4 dígitos                                                                                                             | "CVV must be 3 or 4 digits."                                                                   | Valor-limite (2/3/4/5)          |
 | RN23 | Pagamento – Buy Now Pay Later | Parcelas obrigatórias: 3, 6, 9 ou 12                                                                                               | `finish` desabilitado sem parcela                                                              | Partição de equivalência        |
 | RN24 | Pagamento – Gift Card         | Número com exatamente 16 letras ou dígitos; código de validação com exatamente 4                                                   | "...exactly 16 letters and/or digits." / "...exactly 4 letters and/or digits."                 | Valor-limite (15/16/17 e 3/4/5) |
 | RN25 | Pagamento                     | Pagamento válido mostra sucesso antes da confirmação do pedido                                                                     | `payment-success-message`: "Payment was successful"                                            | —                               |
 | RN26 | Catálogo                      | Busca sem resultado mostra contador 0 e mensagem                                                                                   | "0 products found for 'x'" / "There are no products found."                                    | Partição de equivalência        |
+| RN27 | Login                         | A conta é bloqueada depois de 3 senhas erradas; o bloqueio não expira (não vale para admin)                                        | "Account locked, too many failed attempts. Please contact the administrator."                  | Transição de estados (2/3/4)    |
+| RN28 | Pagamento – Credit Card       | Titular aceita só letras sem acento e espaços                                                                                      | campo inválido e `finish` desabilitado, **sem mensagem de erro**                               | Partição de equivalência        |
+| RN29 | Carrinho                      | Quantidade no carrinho entre 1 e 99: 0 ou negativo volta para 1; acima de 99 vira 99                                               | toast "You can order at most 99 of this product."                                              | Valor-limite (0/1/99/100)       |
 
-### Pontos a confirmar
+### Pontos confirmados (24/11/2026)
 
-Comportamentos suspeitos. Ainda **não** são regras nem bugs confirmados.
+Os pontos em aberto da primeira exploração foram verificados com Playwright (headless), Swagger e o [código-fonte público](https://github.com/testsmith-io/practice-software-testing).
 
-- O nome do titular do cartão aceitou dígito ("Jo1") sem erro. Falta validação ou não existe essa regra?
-- No Credit Card, o botão "Check payment" ficou **habilitado com os campos vazios** uma vez, logo após trocar de forma de pagamento. Precisa ser reproduzido.
-- Quantidade 0 ou negativa no passo 1 do carrinho (não testado).
-- Rentals: regras de horas e quantidade não verificadas.
+| Ponto                                           | Resultado                                                                                                                                       |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Titular do cartão com dígito ("Jo1")            | **Rejeitado**, mas sem mensagem de erro. A anotação anterior ("aceitou sem erro") estava errada: o campo fica inválido, só não avisa. Ver RN28. |
+| "Check payment" habilitado com os campos vazios | **Reproduzido em 3 de 3 execuções:** trocar de Gift Card para Credit Card deixa o `finish` habilitado com os campos vazios. Bug provável.       |
+| Quantidade 0 ou negativa no carrinho            | Volta para 1. Ver RN29.                                                                                                                         |
+| Bloqueio de conta                               | 3 tentativas, sem prazo para desbloquear. Ver RN27.                                                                                             |
+| Validade no mês atual                           | Aceita. Ver RN21.                                                                                                                               |
+| Rota e redirecionamento do login                | `/auth/login` → `/account`                                                                                                                      |
+| Ordenação e filtros na API                      | Método HTTP **`QUERY`** (não GET) em `/products`, com filtros no corpo (`sort`, `between`, `by_category`); busca em `QUERY /products/search`    |
+| API da versão com bugs                          | `https://api-with-bugs.practicesoftwaretesting.com`                                                                                             |
+| Fatura na API (`InvoiceResponse`)               | `invoice_number`, `subtotal`, `total`, `status`, `invoicelines[]` (`unit_price`, `quantity`, `discounted_price`, `discount_percentage`)         |
+| Rentals                                         | Não verificado (pergunta em aberto).                                                                                                            |
+
+> **Atenção:** a conta demo `customer@practicesoftwaretesting.com` está **bloqueada** no ambiente público por excesso de tentativas. Os testes devem usar uma conta própria; o teste de senha inválida deve usar um e-mail inexistente ou uma conta descartável.
 
 ## 3. Seletores
 
@@ -120,4 +133,5 @@ Usar `getByRole` ou o texto visível:
 
 1. Configurar `baseURL` e `testIdAttribute: 'data-test'` no `playwright.config.ts`, remover o `tests/example.spec.ts` e adicionar os scripts de teste ao `package.json`.
 2. Usar a tabela de regras como base para a E5 (cenários com IA) e a E6 (plano de testes).
-3. Repetir este reconhecimento na [versão com bugs](https://with-bugs.practicesoftwaretesting.com) e comparar.
+3. Comparar com a [versão com bugs](https://with-bugs.practicesoftwaretesting.com) na E8, rodando a suíte automatizada nas duas versões.
+4. Registrar como issue o bug do "Check payment" habilitado com os campos vazios.
