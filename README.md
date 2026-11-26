@@ -57,6 +57,68 @@ gitGraph
 
 **Defeitos:** registrados como [issues](.github\issue_template\bug_report.yml) com o modelo de bug report, separando **severidade** (impacto) de **prioridade** (urgência).
 
+## Arquitetura (E2)
+
+Arquitetura em camadas com **Page Objects, componentes e fixtures** do Playwright. Cada camada tem uma responsabilidade só.
+
+```mermaid
+flowchart TB
+  CI["GitHub Actions (CI/CD)"]
+  subgraph T["1. Testes"]
+    SETUP["setup: login uma vez"]
+    E2E["tests/e2e"]
+    API["tests/api"]
+  end
+  FX["2. Fixtures: páginas, API e carrinho prontos"]
+  subgraph S["3. Suporte"]
+    PO["Page Objects e componentes"]
+    AC["Cliente de API"]
+    DT["Dados de teste"]
+  end
+  CFG["4. Configuração: ambientes normal e with-bugs"]
+  APP[("Toolshop: UI + API REST")]
+  REP["Relatórios: HTML, Allure, trace"]
+  CI --> T
+  T --> FX
+  T --> DT
+  FX --> PO
+  FX --> AC
+  CFG -.-> FX
+  PO --> APP
+  AC --> APP
+  T --> REP
+```
+
+### Estrutura de pastas
+
+```
+├── .github/          → CI, modelos de PR e de bug report
+├── docs/             → exploração, casos de teste, arquitetura, métricas de IA
+├── src/
+│   ├── config/       → ambientes (UI e API) e variáveis do .env
+│   ├── pages/        → Page Objects (login, catálogo, produto, checkout)
+│   ├── components/   → partes reaproveitadas (cabeçalho, formulário de pagamento)
+│   ├── api/          → cliente da API REST
+│   ├── data/         → dados de teste: partições e valores-limite
+│   └── fixtures/     → fixtures do Playwright
+└── tests/
+    ├── setup/        → autenticação com sessão salva
+    ├── e2e/          → testes de ponta a ponta
+    └── api/          → testes de API
+```
+
+### Regras da arquitetura
+
+1. **O teste não usa seletor:** quem conhece a tela é o Page Object.
+2. **O Page Object não faz asserção:** ele executa ações e expõe elementos. Quem valida é o teste.
+3. **Seletores por ordem de preferência:** `getByTestId` (`data-test`) > `getByRole` > texto > CSS.
+4. **Locator com escopo:** quando o `data-test` se repete, a busca parte do formulário, passo ou card.
+5. **Sem dependência de massa compartilhada:** nada de IDs gerados, marcas ou conta demo; o carrinho é criado em cada teste.
+6. **Todo teste tem tag** da regra e do caso que cobre (`@RNxx`, `@CT-xx`); os críticos também levam `@smoke`.
+7. **Código gerado por IA só entra via PR**, com a seção "Uso de IA" preenchida.
+
+Detalhes, decisões e riscos em [docs/arquitetura.md](docs/arquitetura.md).
+
 ## Autor
 
 Bruno Aurelio, Analista de Automação - QA - Testes · [LinkedIn](https://www.linkedin.com/in/brunoaurelio)
