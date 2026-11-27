@@ -120,6 +120,46 @@ flowchart TB
 
 Detalhes, decisões e riscos em [docs/arquitetura.md](docs/arquitetura.md).
 
+## Como rodar (E3)
+
+### Pré-requisitos
+
+- [Node.js](https://nodejs.org) LTS
+- Uma conta de teste criada no [Toolshop](https://practicesoftwaretesting.com) (não use a conta demo do site, que está bloqueada)
+
+### Instalação
+
+```bash
+git clone https://github.com/brunoaurelio89/toolshop-automation-ai.git
+cd toolshop-automation-ai
+npm ci
+npx playwright install chromium
+```
+
+### Configuração
+
+Copie o `.env.example` para `.env` e preencha com a sua conta de teste:
+
+```
+TEST_ENV=normal
+USER_EMAIL=seu-email-de-teste@exemplo.com
+USER_PASSWORD=sua-senha-de-teste
+```
+
+O `.env` não vai para o repositório. Sem as credenciais, o teste de login válido é pulado (aparece como _skipped_).
+
+### Comandos
+
+| Comando              | O que faz                                     |
+| -------------------- | --------------------------------------------- |
+| `npm test`           | Roda todos os testes no ambiente normal       |
+| `npm run test:smoke` | Roda só os testes críticos (`@smoke`)         |
+| `npm run test:bugs`  | Roda a suíte na versão com bugs do Toolshop   |
+| `npm run report`     | Abre o relatório HTML da última execução      |
+| `npm run lint`       | Verifica o padrão do código e as regras da E2 |
+
+Para acompanhar os testes visualmente: `npx playwright test --ui`
+
 ## Autor
 
 Bruno Aurelio, Analista de Automação - QA - Testes · [LinkedIn](https://www.linkedin.com/in/brunoaurelio)
