@@ -14,18 +14,18 @@ O foco é o **domínio de pagamento**: carrinho, checkout e as 5 formas de pagam
 
 ## Roteiro
 
-| Etapa | Descrição                                                 | Status |
-| ----- | --------------------------------------------------------- | ------ |
-| E0    | [Exploração da aplicação](docs/e0-exploracao.md)          | ✅     |
-| E1    | [Repositório e fluxo de trabalho](docs/e1-repositorio.md) | ✅     |
-| E2    | [Arquitetura](docs/arquitetura.md)                        | ✅     |
-| E3    | Instalação do Playwright e primeiro teste                 | ⏳     |
-| E4    | CI/CD com GitHub Actions + relatório Allure               | ⏳     |
-| E5    | Cenários de teste com IA                                  | ⏳     |
-| E6    | Plano de testes                                           | ⏳     |
-| E7    | Automação: login, catálogo, carrinho e checkout           | ⏳     |
-| E8    | Execução: versão normal x versão com bugs                 | ⏳     |
-| E9    | Métricas e resultados                                     | ⏳     |
+| Etapa | Descrição                                                                | Status |
+| ----- | ------------------------------------------------------------------------ | ------ |
+| E0    | [Exploração da aplicação](docs/e0-exploracao.md)                         | ✅     |
+| E1    | [Repositório e fluxo de trabalho](docs/e1-repositorio.md)                | ✅     |
+| E2    | [Arquitetura](docs/arquitetura.md)                                       | ✅     |
+| E3    | [Instalação do Playwright e primeiro teste](docs/e3-setup-playwright.md) | ⏳     |
+| E4    | CI/CD com GitHub Actions + relatório Allure                              | ⏳     |
+| E5    | Cenários de teste com IA                                                 | ⏳     |
+| E6    | Plano de testes                                                          | ⏳     |
+| E7    | Automação: login, catálogo, carrinho e checkout                          | ⏳     |
+| E8    | Execução: versão normal x versão com bugs                                | ⏳     |
+| E9    | Métricas e resultados                                                    | ⏳     |
 
 ## Fluxo de trabalho
 
