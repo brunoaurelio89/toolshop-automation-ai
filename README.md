@@ -18,7 +18,7 @@ O foco é o **domínio de pagamento**: carrinho, checkout e as 5 formas de pagam
 | ----- | --------------------------------------------------------- | ------ |
 | E0    | [Exploração da aplicação](docs/e0-exploracao.md)          | ✅     |
 | E1    | [Repositório e fluxo de trabalho](docs/e1-repositorio.md) | ✅     |
-| E2    | Arquitetura                                               | ⏳     |
+| E2    | [Arquitetura](docs/arquitetura.md)                        | ✅     |
 | E3    | Instalação do Playwright e primeiro teste                 | ⏳     |
 | E4    | CI/CD com GitHub Actions + relatório Allure               | ⏳     |
 | E5    | Cenários de teste com IA                                  | ⏳     |
