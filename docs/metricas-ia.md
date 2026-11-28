@@ -40,10 +40,7 @@ A soma de **Sem mudança + Corrigidos + Descartados** deve ser igual a **Gerados
 
 | Data | PR | Etapa | Ferramenta | Gerados | Sem mudança | Corrigidos | Descartados | Erros (códigos) | Observação |
 |---|---|---|---|---|---|---|---|---|---|
-| | | | | | | | | | |
-
-> **Exemplo de preenchimento (apague ao registrar o primeiro PR):**
-> `| 2027-02-24 | #5 test/e7a-login | E7a | Claude (gratuito) | 8 | 5 | 2 | 1 | SEL, LIM | Esqueceu o e-mail sem domínio |`
+| 2026-11-27 | #11 feat/e3-setup-playwright | E3 | Claude Code | 8 | 5 | 3 | 0 | OUT, OUT, OUT | Sem mudança: LoginPage, AccountPage, fixture, `env.ts`, `playwright.config.ts`. Corrigidos: 2 testes (tag `@RN02` no login válido; negativo ligado ao CT-04 em vez do CT-05) e regra de lint (`test.skip` só com condição). Nenhum erro SEL ou ARQ |
 
 ## Resumo por etapa
 
@@ -51,6 +48,7 @@ Preencher ao concluir cada etapa. **Aproveitamento** = Sem mudança ÷ Gerados.
 
 | Etapa | Ferramenta | Gerados | Sem mudança | Corrigidos | Descartados | Aproveitamento | Erro mais comum |
 |---|---|---|---|---|---|---|---|
+| E3 – Setup e smoke de login | Claude Code | 8 | 5 | 3 | 0 | 62,5% | OUT |
 | E5 – Cenários | | | | | | | |
 | E7a – Login e catálogo | | | | | | | |
 | E7b – Carrinho e checkout | | | | | | | |
