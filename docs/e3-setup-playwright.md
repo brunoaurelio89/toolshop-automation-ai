@@ -101,11 +101,13 @@ Para conferir, foram criados arquivos temporários com 2 seletores dentro de um 
 
 Todo o código desta etapa foi gerado pelo Claude Code e revisado contra as regras da E2. Nenhum erro de seletor frágil (SEL) ou de arquitetura (ARQ) apareceu. As correções foram:
 
-| O que a IA fez                                                                                       | Correção                                                                        | Código ([metricas-ia.md](metricas-ia.md)) |
-| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------- |
-| Marcou o login válido com `@RN01 @RN02`                                                              | Trocado por `@RN01 @CT-01`, conferindo o `tesCases.md`                          | OUT                                       |
-| O plano chamava o negativo de "senha inválida" (CT-04), embora o dado já fosse um e-mail inexistente | Renomeado e ligado ao CT-05 (e-mail inexistente), que é o caso que o dado cobre | OUT (caso de teste errado)                |
-| O plugin do Playwright avisou sobre o `test.skip` das credenciais                                    | Liberado só o skip com condição, sem desligar a regra                           | OUT                                       |
+| O que a IA fez                                                                                                                        | Correção                                                                                                                              | Código ([metricas-ia.md](metricas-ia.md)) |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| Marcou o login válido com `@RN01 @RN02`                                                                                               | Trocado por `@RN01 @CT-01`, conferindo o `tesCases.md`                                                                                | OUT                                       |
+| O plano do teste negativo (Notion, 22/11) usava a conta real com senha errada (CT-04), o que bloquearia a conta na 3ª execução (RN27) | Plano corrigido em 26/11 às 20h51, 22 minutos antes da branch: e-mail inexistente. No código, o teste foi renomeado e ligado ao CT-05 | OUT (dado de teste perigoso)              |
+| O plugin do Playwright avisou sobre o `test.skip` das credenciais                                                                     | Liberado só o skip com condição, sem desligar a regra                                                                                 | OUT                                       |
+
+**Histórico desta tabela:** em 28/11/2026 (PR #13), a segunda linha foi reescrita como se o plano nunca tivesse usado a conta real ("o dado já era um e-mail inexistente"). O histórico de versões da tarefa no Notion mostra que o plano usou a conta real com senha errada de 22/11 até 26/11 às 20h51. A revisão olhou só a última versão do plano. A linha voltou a registrar o que aconteceu.
 
 ## Pendências para as próximas etapas
 

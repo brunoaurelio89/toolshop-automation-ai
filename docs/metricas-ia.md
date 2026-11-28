@@ -40,8 +40,8 @@ A soma de **Sem mudança + Corrigidos + Descartados** deve ser igual a **Gerados
 
 | Data | PR | Etapa | Ferramenta | Gerados | Sem mudança | Corrigidos | Descartados | Erros (códigos) | Observação |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-11-27 | #11 feat/e3-setup-playwright | E3 | Claude Code | 8 | 5 | 3 | 0 | OUT, OUT, OUT | Sem mudança: LoginPage, AccountPage, fixture, `env.ts`, `playwright.config.ts`. Corrigidos: 2 testes (tag `@RN02` no login válido; negativo ligado ao CT-04 em vez do CT-05) e regra de lint (`test.skip` só com condição). Nenhum erro SEL ou ARQ |
-| 2026-11-28 | #13 fix/e3-docs-review | E3 | Claude Code | 4 | 4 | 0 | 0 | — | Revisão da E3 contra o Notion: 3 correções de docs (`arquitetura.md` e `e3-setup-playwright.md`) e remoção de 2 dependências não usadas |
+| 2026-11-27 | #11 feat/e3-setup-playwright | E3 | Claude Code | 8 | 5 | 3 | 0 | OUT, OUT, OUT | Sem mudança: LoginPage, AccountPage, fixture, `env.ts`, `playwright.config.ts`. Corrigidos: 2 testes (tag `@RN02` no login válido; negativo: o plano usava a conta real com senha errada (CT-04) até 26/11 às 20h51, corrigido para e-mail inexistente antes da branch; teste ligado ao CT-05) e regra de lint (`test.skip` só com condição). Nenhum erro SEL ou ARQ |
+| 2026-11-28 | #13 fix/e3-docs-review | E3 | Claude Code | 4 | 4 | 0 | 0 | — | Revisão da E3 contra o Notion: 3 correções de docs (`arquitetura.md` e `e3-setup-playwright.md`) e remoção de 2 dependências não usadas. Uma das correções foi revista depois: a nova descrição do CT-04 ignorou o histórico de versões do plano no Notion (ver `e3-setup-playwright.md`) |
 
 ## Resumo por etapa
 
