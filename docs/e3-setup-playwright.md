@@ -89,23 +89,23 @@ Para conferir, foram criados arquivos temporários com 2 seletores dentro de um 
 
 ## Diferenças em relação ao plano
 
-| Planejado                                   | Feito                                           | Motivo                                                  |
-| ------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------- |
-| Branch `feature/e3-setup-playwright`        | `feat/e3-setup-playwright`                      | Padrão de branches do README (E1)                       |
-| LoginPage a partir do codegen               | LoginPage a partir do mapa de `data-test` da E0 | Os seletores já estavam levantados e confirmados        |
-| Teste "senha inválida" com a conta de teste | CT-05 com e-mail inexistente                    | Evitar o bloqueio permanente da RN27                    |
-| URLs só da UI no config                     | UI e API por ambiente em `src/config/env.ts`    | Prepara o cliente de API (E2) sem mudar o config depois |
-| Verificar só a URL depois do login          | URL + título "My account"                       | O resultado esperado do CT-01 inclui o título           |
+| Planejado                            | Feito                                           | Motivo                                                  |
+| ------------------------------------ | ----------------------------------------------- | ------------------------------------------------------- |
+| Branch `feature/e3-setup-playwright` | `feat/e3-setup-playwright`                      | Padrão de branches do README (E1)                       |
+| LoginPage a partir do codegen        | LoginPage a partir do mapa de `data-test` da E0 | Os seletores já estavam levantados e confirmados        |
+| Teste "senha inválida" (CT-04)       | CT-05 com e-mail inexistente                    | Evitar o bloqueio permanente da RN27                    |
+| URLs só da UI no config              | UI e API por ambiente em `src/config/env.ts`    | Prepara o cliente de API (E2) sem mudar o config depois |
+| Verificar só a URL depois do login   | URL + título "My account"                       | O resultado esperado do CT-01 inclui o título           |
 
 ## Uso de IA
 
 Todo o código desta etapa foi gerado pelo Claude Code e revisado contra as regras da E2. Nenhum erro de seletor frágil (SEL) ou de arquitetura (ARQ) apareceu. As correções foram:
 
-| O que a IA fez                                                    | Correção                                               | Código ([metricas-ia.md](metricas-ia.md)) |
-| ----------------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------- |
-| Marcou o login válido com `@RN01 @RN02`                           | Trocado por `@RN01 @CT-01`, conferindo o `tesCases.md` | OUT                                       |
-| O plano usava a conta real com senha errada (CT-04)               | Trocado pelo CT-05, com e-mail inexistente             | OUT (dado de teste perigoso)              |
-| O plugin do Playwright avisou sobre o `test.skip` das credenciais | Liberado só o skip com condição, sem desligar a regra  | OUT                                       |
+| O que a IA fez                                                                                       | Correção                                                                        | Código ([metricas-ia.md](metricas-ia.md)) |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------- |
+| Marcou o login válido com `@RN01 @RN02`                                                              | Trocado por `@RN01 @CT-01`, conferindo o `tesCases.md`                          | OUT                                       |
+| O plano chamava o negativo de "senha inválida" (CT-04), embora o dado já fosse um e-mail inexistente | Renomeado e ligado ao CT-05 (e-mail inexistente), que é o caso que o dado cobre | OUT (caso de teste errado)                |
+| O plugin do Playwright avisou sobre o `test.skip` das credenciais                                    | Liberado só o skip com condição, sem desligar a regra                           | OUT                                       |
 
 ## Pendências para as próximas etapas
 

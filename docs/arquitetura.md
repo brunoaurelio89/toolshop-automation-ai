@@ -70,7 +70,6 @@ toolshop-automation-ai/
 │   └── api/                   → fase extra de API
 ├── playwright/.auth/          → sessão salva (fora do Git)
 ├── playwright.config.ts
-├── tsconfig.json
 └── .env.example
 ```
 
@@ -85,12 +84,12 @@ A mesma suíte roda nas duas versões do Toolshop. O ambiente é escolhido por `
 
 Na E8, o teste que passa no `normal` e falha no `with-bugs` aponta um bug confirmado.
 
-Configuração base do `playwright.config.ts` (implementada na E3):
+Configuração base do `playwright.config.ts`:
 
-- `testIdAttribute: 'data-test'`, porque o Toolshop usa esse atributo de forma ampla (E0, seção 3);
-- só **chromium**, `workers: 2` e `retries` apenas no CI: o site é público e compartilhado;
-- evidências: `trace: 'on-first-retry'`, `screenshot: 'only-on-failure'`, `video: 'retain-on-failure'`;
-- projetos: `setup` (gera a sessão) → `chromium` (`dependencies: ['setup']` e `storageState: 'playwright/.auth/user.json'`).
+- `testIdAttribute: 'data-test'`, porque o Toolshop usa esse atributo de forma ampla (E0, seção 3) — E3;
+- só **chromium**, `workers: 2` e `retries` apenas no CI: o site é público e compartilhado — E3;
+- evidências: `trace: 'on-first-retry'`, `screenshot: 'only-on-failure'`, `video: 'retain-on-failure'` — E3;
+- projetos: `setup` (gera a sessão) → `chromium` (`dependencies: ['setup']` e `storageState: 'playwright/.auth/user.json'`) — **E7a** (na E3 existe só o projeto `chromium`).
 
 ## 4. Decisões e motivos
 
